@@ -21,13 +21,14 @@ services:
     image: 359825880475.dkr.ecr.us-east-1.amazonaws.com/ruby-docker-app:latest
     working_dir: /app
     container_name: my-web-container
-    restart: on-failure:10
+    restart: always
     depends_on:
     - db
     - redis
     volumes:
     - .:/app
     ports:
-    - 3000:3000
+    - 3000
+    # - 3000:3000
     environment:
     - MY_HOST=${HOSTNAME}
