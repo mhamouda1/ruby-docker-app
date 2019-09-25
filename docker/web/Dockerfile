@@ -4,11 +4,11 @@ WORKDIR /app
 
 RUN apt-get update -y
 
-RUN gem install rails -v 4.2.11
+RUN gem install rails -v 4.2.11 --no-document
 
 COPY Gemfile /app/
 COPY Gemfile.lock /app/
-RUN bundle update
+RUN bundle update --jobs 5
 
 COPY . /app
 
