@@ -1,4 +1,4 @@
-README
+# README
 
 Pre-requisites: install docker and docker-compose
 
