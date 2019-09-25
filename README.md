@@ -6,15 +6,10 @@ Run these commands to get the application working:
 
 #### run the applicaton
 ```bash
-docker-compose up
-```
-
-#### create the database
-```bash
-docker-compose run web rake db:create
-```
-
-#### migrate the database
-```bash
-docker-compose run web rake db:migrate
+sudo docker-compose pull
+sudo docker-compose build
+sudo docker-compose up -d
+sudo docker-compose run web bundle update
+sudo docker-compose run web rake db:create
+sudo docker-compose run web rake db:migrate
 ```
