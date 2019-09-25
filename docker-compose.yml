@@ -24,7 +24,7 @@ services:
     - db
     - redis
     volumes:
-    - $PWD:/app
+    - .:/app
     ports:
     - 3000:3000
     environment:
