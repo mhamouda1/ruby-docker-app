@@ -6,10 +6,10 @@ Run these commands to get the application working:
 
 #### run the applicaton
 ```bash
-sudo docker-compose pull
-sudo docker-compose build
-sudo docker-compose up -d
-sudo docker-compose run web bundle update
-sudo docker-compose run web rake db:create
-sudo docker-compose run web rake db:migrate
+docker-compose pull
+docker-compose build
+docker-compose up -d
+docker-compose run web bundle update
+docker-compose run web rake db:create
+docker-compose run web rake db:migrate
 ```
