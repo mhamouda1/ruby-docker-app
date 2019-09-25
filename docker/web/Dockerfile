@@ -2,9 +2,8 @@ FROM ruby
 
 WORKDIR /app
 
-RUN apt-get update -y
-
-RUN gem install rails -v 4.2.11 --no-document
+RUN apt-get update -y && \
+    gem install rails -v 4.2.11 --no-document
 
 COPY Gemfile /app/
 COPY Gemfile.lock /app/
