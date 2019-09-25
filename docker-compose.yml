@@ -17,7 +17,6 @@ services:
     build:
       context: .
       dockerfile: ./docker/web/Dockerfile
-    #image: mhamouda1/ruby-docker-web
     image: 359825880475.dkr.ecr.us-east-1.amazonaws.com/ruby-docker-app:latest
     working_dir: /app
     container_name: my-web-container
