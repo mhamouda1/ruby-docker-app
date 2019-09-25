@@ -8,9 +8,6 @@ RUN apt-get update -y && \
 COPY Gemfile /app/
 COPY Gemfile.lock /app/
 
-RUN cat Gemfile
-RUN cat Gemfile.lock
-
 RUN bundle update --jobs 5
 
 COPY . /app
