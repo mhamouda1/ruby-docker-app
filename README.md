@@ -1,3 +1,9 @@
+README
+
+Pre-requisites: install docker and docker-compose
+
+Run these commands to get the application working:
+
 ```bash
 docker-compose run web rake db:create
 ```
