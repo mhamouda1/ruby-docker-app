@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/web/Dockerfile
-    image: 692733706984.dkr.ecr.us-east-1.amazonaws.com/ruby-docker-app:latest
+    image: 203759270753.dkr.ecr.us-east-1.amazonaws.com/ruby-docker-app:latest
     working_dir: /app
     container_name: my-web-container
     restart: always
