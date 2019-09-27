@@ -2,7 +2,7 @@ version: '3'
 services:
   db:
     image: mysql:5.7
-    container_name: my-db-container
+    container_name: db
     volumes:
     - /tmp/ruby-docker-app/db:/var/lib/mysql
     restart: always
@@ -11,11 +11,16 @@ services:
 
   redis:
     image: redis
-    container_name: my-redis-container
+    container_name: redis
 
   memcached:
-    image: memcached
-    container_name: my-memcached-container
+    build:
+      context: .
+      dockerfile: ./docker/memcached/Dockerfile
+    image: my-memcached
+    container_name: memcached
+    ports:
+    - 11211:11211
 
   web:
     build:
@@ -23,11 +28,11 @@ services:
       dockerfile: ./docker/web/Dockerfile
     image: 163963319917.dkr.ecr.us-east-1.amazonaws.com/ruby-docker-app:latest
     working_dir: /app
-    container_name: my-web-container
+    container_name: web
     restart: always
-    depends_on:
-    - db
-    - redis
+    # depends_on:
+    # - db
+    # - redis
     volumes:
     - .:/app
     ports:

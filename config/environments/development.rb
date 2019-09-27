@@ -38,4 +38,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # config.cache_store = :mem_cache_store, "memcached:11211"
+  #not able to set session store here, have to use initializers/session_store.rb
 end

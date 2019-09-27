@@ -1,0 +1,8 @@
+<% flash.each do |key, value| %>
+  <% if false %><div class="alert alert-<%= key %>"><%= value %></div><% end %>
+  <div>
+    <div class="dt-sc-<%= key %>-box">
+      <p><%= value %></a></p>
+    </div>
+  </div>
+<% end %>

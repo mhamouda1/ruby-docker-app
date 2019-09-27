@@ -31,6 +31,7 @@ resource "aws_instance" "web_public_1" {
       "sudo git clone https://github.com/mhamouda1/ruby-docker-app",
       "cd ~/ruby-docker-app",
       "echo 'export HOSTNAME=$(hostname)' >> ~/.bash_profile && source ~/.bash_profile",
+      "echo 'export RAILS_ENV=production' >> ~/.bash_profile && source ~/.bash_profile",
       "sudo $(aws ecr get-login --no-include-email --region us-east-1)",
       "sudo docker-compose pull",
       "sudo docker-compose up -d",

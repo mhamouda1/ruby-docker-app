@@ -17,7 +17,7 @@ resource "aws_launch_configuration" "main" {
 #placeholder to allow you to delete the main launch configuration
 resource "aws_launch_configuration" "placeholder" {
   name_prefix   = "placeholder"
-  image_id      = "${data.aws_ami.my_custom_image.id}"
+  image_id      = "${data.aws_ami.amazon.id}"
   instance_type = "t2.micro"
   security_groups = [
     "${aws_security_group.allow_ssh_and_web.id}",
