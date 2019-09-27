@@ -30,8 +30,9 @@ resource "aws_instance" "web_public_1" {
       "sudo systemctl enable docker",
       "sudo git clone https://github.com/mhamouda1/ruby-docker-app",
       "cd ~/ruby-docker-app",
-      "echo 'export HOSTNAME=$(hostname)' >> ~/.bash_profile && source ~/.bash_profile",
-      "echo 'export RAILS_ENV=production' >> ~/.bash_profile && source ~/.bash_profile",
+      "sudo bash -c 'echo export HOSTNAME=$(hostname) >> /root/.bash_profile'", #careful, remote-exec logs in as ec2-user, bootstrap.sh runs as root
+      "sudo bash -c 'echo export RAILS_ENV=production >> /root/.bash_profile'",
+      "sudo bash -c 'source /root/.bash_profile'",
       "sudo $(aws ecr get-login --no-include-email --region us-east-1)",
       "sudo docker-compose pull",
       "sudo docker-compose up -d",
@@ -55,36 +56,36 @@ resource "aws_instance" "web_public_1" {
   }
 }
 
-resource "aws_instance" "web_public_2" {
-  ami           = "${data.aws_ami.my_custom_image.id}"
-  instance_type = "t2.micro"
-  subnet_id     = "${aws_subnet.public_1[0].id}"
-  key_name      = "${aws_key_pair.my_key_pair.id}"
-  vpc_security_group_ids = [
-    "${aws_security_group.allow_ssh_and_web.id}",
-    "${aws_vpc.main.default_security_group_id}",
-    "${aws_security_group.development_testing.id}"
-  ]
-  iam_instance_profile = "${aws_iam_instance_profile.test_profile.name}"
-
-  provisioner "remote-exec" {
-    inline = [
-      "echo 'export HOSTNAME=$(hostname)' >> ~/.bash_profile && source ~/.bash_profile",
-      "cd ~/ruby-docker-app",
-      "sudo docker-compose down",
-      "sudo git pull",
-      "sudo docker-compose up -d",
-    ]
-  }
-
-  connection {
-    type        = "ssh"
-    user        = "ec2-user"
-    host        = "${self.public_ip}"
-    private_key = file("/root/.ssh/id_rsa")
-  }
-
-  tags = {
-    Name = "${terraform.workspace} -  My Public EC2 Instance"
-  }
-}
+#resource "aws_instance" "web_public_2" {
+#  ami           = "${data.aws_ami.my_custom_image.id}"
+#  instance_type = "t2.micro"
+#  subnet_id     = "${aws_subnet.public_1[0].id}"
+#  key_name      = "${aws_key_pair.my_key_pair.id}"
+#  vpc_security_group_ids = [
+#    "${aws_security_group.allow_ssh_and_web.id}",
+#    "${aws_vpc.main.default_security_group_id}",
+#    "${aws_security_group.development_testing.id}"
+#  ]
+#  iam_instance_profile = "${aws_iam_instance_profile.test_profile.name}"
+#
+#  provisioner "remote-exec" {
+#    inline = [
+#      "echo 'export HOSTNAME=$(hostname)' >> ~/.bash_profile && source ~/.bash_profile",
+#      "cd ~/ruby-docker-app",
+#      "sudo docker-compose down",
+#      "sudo git pull",
+#      "sudo docker-compose up -d",
+#    ]
+#  }
+#
+#  connection {
+#    type        = "ssh"
+#    user        = "ec2-user"
+#    host        = "${self.public_ip}"
+#    private_key = file("/root/.ssh/id_rsa")
+#  }
+#
+#  tags = {
+#    Name = "${terraform.workspace} -  My Public EC2 Instance"
+#  }
+#}
