@@ -4,6 +4,10 @@ export HOSTNAME=$(curl http://169.254.169.254/latest/meta-data/local-hostname)
 cd /home/ec2-user/ruby-docker-app
 sudo docker-compose down
 sudo git pull
+sudo git stash #gemfile.lock error if don't git stash
+sudo git pull
+
+sudo docker-compose build
 sudo docker-compose up -d
 sleep 7
 sudo docker-compose run web bundle update
