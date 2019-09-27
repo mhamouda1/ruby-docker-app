@@ -1,5 +1,6 @@
 #!/bin/bash
-export HOSTNAME=$(curl http://169.254.169.254/latest/meta-data/local-hostname)
+sudo bash -c 'echo export HOSTNAME=$(curl http://169.254.169.254/latest/meta-data/local-hostname) >> /home/ec2-user/.bash_profile'
+source /home/ec2-user/.bash_profile
 
 cd /home/ec2-user/ruby-docker-app
 sudo docker-compose down

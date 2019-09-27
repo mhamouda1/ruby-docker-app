@@ -1,1 +1,2 @@
 variable "RUBY_DOCKER_APP_DATABASE_PASSWORD" {}
+variable "MEMCACHED_SERVER" {}
