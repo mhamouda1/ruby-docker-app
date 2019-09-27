@@ -33,9 +33,9 @@ resource "aws_launch_configuration" "placeholder" {
 
 resource "aws_autoscaling_group" "main" {
   name                      = "my auto scaling group"
-  max_size                  = 3
+  max_size                  = 2
   min_size                  = 1
-  desired_capacity          = 2
+  desired_capacity          = 1
   default_cooldown          = 5 #for dev testing
   health_check_grace_period = 60 #time it takes until begin doing health checks
   health_check_type         = "ELB"
