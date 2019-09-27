@@ -1,3 +1,4 @@
+#/etc/profile.d/export_instance_tags.sh
 resource "aws_instance" "web_public_1" {
   ami           = "${data.aws_ami.amazon.id}"
   instance_type = "t2.micro"
@@ -33,9 +34,13 @@ resource "aws_instance" "web_public_1" {
 
       "echo MEMCACHED_SERVER VARIABLE IS: ${var.MEMCACHED_SERVER}",
 
-      "sudo bash -c 'echo export HOSTNAME=$(hostname) >> /root/.bash_profile'", #careful, remote-exec logs in as ec2-user, bootstrap.sh runs as root
+      "sudo bash -c 'echo \"#!/bin/bash\" >> /etc/profile.d/export_env_variables.sh'",
+      "sudo bash -c 'echo export RAILS_ENV=production >> /etc/profile.d/export_env_variables.sh'",
+      "sudo bash -c 'echo export MEMCACHED_SERVER=${var.MEMCACHED_SERVER} >> /etc/profile.d/export_env_variables.sh'",
+
       "sudo bash -c 'echo export RAILS_ENV=production >> /root/.bash_profile'",
       "sudo bash -c 'echo export MEMCACHED_SERVER=${var.MEMCACHED_SERVER} >> /root/.bash_profile'",
+
       "sudo bash -c 'source /root/.bash_profile'",
       "sudo cat /root/.bash_profile'",
       "cat /root/.bash_profile'",
