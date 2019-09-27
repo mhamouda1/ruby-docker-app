@@ -41,7 +41,13 @@ resource "aws_instance" "web_public_1" {
       "sudo bash -c 'echo export RAILS_ENV=production >> /root/.bash_profile'",
       "sudo bash -c 'echo export MEMCACHED_SERVER=${var.MEMCACHED_SERVER} >> /root/.bash_profile'",
 
+      "sudo bash -c 'echo export RAILS_ENV=production >> /root/.bashrc'",
+      "sudo bash -c 'echo export MEMCACHED_SERVER=${var.MEMCACHED_SERVER} >> /root/.bashrc'",
+
       "sudo bash -c 'source /root/.bash_profile'",
+      "sudo bash -c 'source /root/.bashrc'",
+      "sudo bash /etc/profile.d/export_env_variables.sh",
+
       "sudo cat /root/.bash_profile'",
       "cat /root/.bash_profile'",
 
@@ -53,6 +59,7 @@ resource "aws_instance" "web_public_1" {
       "sudo docker-compose run web rake db:create",
       "sudo docker-compose run web rake db:migrate",
       "sudo docker-compose down",
+      "sudo docker-compose kill",
     ]
   }
 
