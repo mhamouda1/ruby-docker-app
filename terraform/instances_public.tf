@@ -16,10 +16,17 @@ resource "aws_instance" "web_public_1" {
   provisioner "file" {
     source      = "/root/.ssh/id_rsa"
     destination = "~/default_my_key_pair.pem"
+    source      = "golden_image.sh"
+    destination = "/tmp/golden_image.sh"
   }
 
   provisioner "remote-exec" {
-    script = "${file("golden_image.sh")}"
+    inline = [
+      "sudo chmod +x /tmp/golden_image.sh",
+      "sudo bash /tmp/golden_image.sh ${var.MEMCACHED_SERVER} production",
+    ]
+
+    # script = "golden_image.sh"
     #inline = [
     #  "chmod 400 default_my_key_pair.pem",
     #  "sudo yum install docker -y",

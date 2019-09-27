@@ -1,4 +1,5 @@
 #!/bin/bash
+#parameter 1 = memcached server, parameter 2 = rails environment
 chmod 400 default_my_key_pair.pem
 sudo yum install docker -y
 sudo yum install git -y
@@ -10,17 +11,18 @@ sudo systemctl enable docker
 sudo git clone https://github.com/mhamouda1/ruby-docker-app
 cd ~/ruby-docker-app
 
-echo MEMCACHED_SERVER VARIABLE IS: ${var.MEMCACHED_SERVER}
+echo MEMCACHED_SERVER VARIABLE IS: $1
+echo RAILS_ENV VARIABLE IS: $2
 
-sudo bash -c 'echo \"#!/bin/bash\" >> /etc/profile.d/export_env_variables.sh'
-sudo bash -c 'echo export RAILS_ENV=production >> /etc/profile.d/export_env_variables.sh'
-sudo bash -c 'echo export MEMCACHED_SERVER=${var.MEMCACHED_SERVER} >> /etc/profile.d/export_env_variables.sh'
+sudo bash -c "echo '#!/bin/bash' >> /etc/profile.d/export_env_variables.sh"
+sudo bash -c "echo export RAILS_ENV=$2 >> /etc/profile.d/export_env_variables.sh"
+sudo bash -c "echo export MEMCACHED_SERVER=$1 >> /etc/profile.d/export_env_variables.sh"
 
-sudo bash -c 'echo export RAILS_ENV=production >> /root/.bash_profile'
-sudo bash -c 'echo export MEMCACHED_SERVER=${var.MEMCACHED_SERVER} >> /root/.bash_profile'
+sudo bash -c "echo export RAILS_ENV=$2 >> /root/.bash_profile"
+sudo bash -c "echo export MEMCACHED_SERVER=$1 >> /root/.bash_profile"
 
-sudo bash -c 'echo export RAILS_ENV=production >> /root/.bashrc'
-sudo bash -c 'echo export MEMCACHED_SERVER=${var.MEMCACHED_SERVER} >> /root/.bashrc'
+sudo bash -c "echo export RAILS_ENV=$2 >> /root/.bashrc"
+sudo bash -c "echo export MEMCACHED_SERVER=$1 >> /root/.bashrc"
 
 sudo bash -c 'source /root/.bash_profile'
 sudo bash -c 'source /root/.bashrc'

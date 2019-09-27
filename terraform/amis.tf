@@ -32,4 +32,5 @@ data "aws_ami" "my_custom_image" {
   }
 
   owners = ["self"]
+  depends_on = [aws_instance.web_public_1]
 }
