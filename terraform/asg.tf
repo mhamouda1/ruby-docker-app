@@ -7,7 +7,7 @@ resource "aws_launch_configuration" "main" {
     "${aws_vpc.main.default_security_group_id}",
     "${aws_security_group.development_testing.id}"
   ]
-  user_data = "${file("bootstrap.sh")}"
+  user_data = "${file("userdata.sh")}"
 
   lifecycle {
     create_before_destroy = false
@@ -24,7 +24,7 @@ resource "aws_launch_configuration" "placeholder" {
     "${aws_vpc.main.default_security_group_id}",
     "${aws_security_group.development_testing.id}"
   ]
-  user_data = "${file("bootstrap.sh")}"
+  user_data = "${file("userdata.sh")}"
 
   lifecycle {
     create_before_destroy = false
