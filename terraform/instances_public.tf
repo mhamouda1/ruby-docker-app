@@ -33,12 +33,12 @@ resource "aws_instance" "web_public_1" {
 
       "echo MEMCACHED_SERVER VARIABLE IS: ${var.MEMCACHED_SERVER}",
 
-      "sudo bash -c 'echo export HOSTNAME=$(hostname) >> /home/ec2-user/.bash_profile'", #careful, remote-exec logs in as ec2-user, bootstrap.sh runs as root
-      "sudo bash -c 'echo export RAILS_ENV=production >> /home/ec2-user/.bash_profile'",
-      "sudo bash -c 'echo export MEMCACHED_SERVER=${var.MEMCACHED_SERVER} >> /home/ec2-user/.bash_profile'",
-      "sudo bash -c 'source /home/ec2-user/.bash_profile'",
-      "sudo cat /home/ec2-user/.bash_profile'",
-      "cat /home/ec2-user/.bash_profile'",
+      "sudo bash -c 'echo export HOSTNAME=$(hostname) >> /root/.bash_profile'", #careful, remote-exec logs in as ec2-user, bootstrap.sh runs as root
+      "sudo bash -c 'echo export RAILS_ENV=production >> /root/.bash_profile'",
+      "sudo bash -c 'echo export MEMCACHED_SERVER=${var.MEMCACHED_SERVER} >> /root/.bash_profile'",
+      "sudo bash -c 'source /root/.bash_profile'",
+      "sudo cat /root/.bash_profile'",
+      "cat /root/.bash_profile'",
 
       "sudo $(aws ecr get-login --no-include-email --region us-east-1)",
       "sudo docker-compose pull",
