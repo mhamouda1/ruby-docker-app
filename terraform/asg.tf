@@ -18,7 +18,7 @@ resource "aws_launch_configuration" "main" {
 resource "aws_launch_configuration" "placeholder" {
   name_prefix   = "placeholder"
   image_id      = "${data.aws_ami.amazon.id}"
-  instance_type = "t2.micro"
+  instance_type = "t2.nano"
   security_groups = [
     "${aws_security_group.allow_ssh_and_web.id}",
     "${aws_vpc.main.default_security_group_id}",

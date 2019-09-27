@@ -20,6 +20,10 @@ echo RAILS_ENV VARIABLE IS: $2
 export MEMCACHED_SERVER=$1
 export RAILS_ENV=$2
 
+sudo touch .env
+sudo bash -c "echo 'MEMCACHED_SERVER=$1' >> .env"
+sudo bash -c "echo 'RAILS_ENV=$2' >> .env"
+
 sudo bash -c "echo '#!/bin/bash' >> /etc/profile.d/export_env_variables.sh"
 sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /etc/profile.d/export_env_variables.sh"
 sudo bash -c "echo 'export RAILS_ENV=$2' >> /etc/profile.d/export_env_variables.sh"
