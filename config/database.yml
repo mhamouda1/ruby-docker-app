@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: rubydockerappproduction
-  username: ruby-docker-app
+  username: <%= ENV['RUBY_DOCKER_APP_DATABASE_USERNAME'] %>
   password: <%= ENV['RUBY_DOCKER_APP_DATABASE_PASSWORD'] %>
+  host: <%= ENV['RUBY_DOCKER_APP_DATABASE_HOST'] %>

@@ -16,30 +16,39 @@ cd /home/ec2-user/ruby-docker-app
 
 echo MEMCACHED_SERVER VARIABLE IS: $1
 echo RAILS_ENV VARIABLE IS: $2
+echo RUBY_DOCKER_APP_DATABASE_HOST=$3
+echo RUBY_DOCKER_APP_DATABASE_PASSWORD=$4
+echo RUBY_DOCKER_APP_DATABASE_USERNAME=$5
 
 export MEMCACHED_SERVER=$1
 export RAILS_ENV=$2
+export RUBY_DOCKER_APP_DATABASE_HOST=$3
+export RUBY_DOCKER_APP_DATABASE_PASSWORD=$4
+export RUBY_DOCKER_APP_DATABASE_USERNAME=$5
 
 sudo touch .env
 sudo bash -c "echo 'MEMCACHED_SERVER=$1' >> .env"
 sudo bash -c "echo 'RAILS_ENV=$2' >> .env"
+sudo bash -c "echo 'RUBY_DOCKER_APP_DATABASE_HOST=$3' >> .env"
+sudo bash -c "echo 'RUBY_DOCKER_APP_DATABASE_PASSWORD=$4' >> .env"
+sudo bash -c "echo 'RUBY_DOCKER_APP_DATABASE_USERNAME=$5' >> .env"
 
-sudo bash -c "echo '#!/bin/bash' >> /etc/profile.d/export_env_variables.sh"
-sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /etc/profile.d/export_env_variables.sh"
-sudo bash -c "echo 'export RAILS_ENV=$2' >> /etc/profile.d/export_env_variables.sh"
-
-sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /root/.bash_profile"
-sudo bash -c "echo 'export RAILS_ENV=$2' >> /root/.bash_profile"
-
-sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /root/.bashrc"
-sudo bash -c "echo 'export RAILS_ENV=$2' >> /root/.bashrc"
-
-sudo bash -c "echo 'export MEMCACHED_SERVER=$1'"
-sudo bash -c "echo 'export RAILS_ENV=$2'"
-
-sudo bash -c "source /root/.bash_profile"
-sudo bash -c "source /root/.bashrc"
-sudo bash /etc/profile.d/export_env_variables.sh
+#sudo bash -c "echo '#!/bin/bash' >> /etc/profile.d/export_env_variables.sh"
+#sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /etc/profile.d/export_env_variables.sh"
+#sudo bash -c "echo 'export RAILS_ENV=$2' >> /etc/profile.d/export_env_variables.sh"
+#
+#sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /root/.bash_profile"
+#sudo bash -c "echo 'export RAILS_ENV=$2' >> /root/.bash_profile"
+#
+#sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /root/.bashrc"
+#sudo bash -c "echo 'export RAILS_ENV=$2' >> /root/.bashrc"
+#
+#sudo bash -c "echo 'export MEMCACHED_SERVER=$1'"
+#sudo bash -c "echo 'export RAILS_ENV=$2'"
+#
+#sudo bash -c "source /root/.bash_profile"
+#sudo bash -c "source /root/.bashrc"
+#sudo bash /etc/profile.d/export_env_variables.sh
 
 cd /home/ec2-user/ruby-docker-app
 

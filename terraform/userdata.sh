@@ -1,13 +1,13 @@
 #!/bin/bash
 sudo bash -c 'echo export HOSTNAME=$(curl http://169.254.169.254/latest/meta-data/local-hostname) >> /root/.bash_profile'
 source /root/.bash_profile
-source /root/.bashrc
 
-export RAILS_ENV=$(RAILS_ENV)
-export MEMCACHED_SERVER=$(MEMCACHED_SERVER)
+#source /root/.bashrc
+#export RAILS_ENV=$(RAILS_ENV)
+#export MEMCACHED_SERVER=$(MEMCACHED_SERVER)
 
-whoami > whoami.txt
-env > env.txt
+# whoami > whoami.txt
+# env > env.txt
 
 cd /home/ec2-user/ruby-docker-app
 sudo docker-compose down
@@ -26,7 +26,7 @@ sudo docker-compose run web rake db:migrate
 sudo docker-compose down
 sudo docker-compose up -d
 
-source /root/.bash_profile
-source /root/.bashrc
-whoami > whoami2.txt
-env > env2.txt
+# source /root/.bash_profile
+# source /root/.bashrc
+# whoami > whoami2.txt
+# env > env2.txt
