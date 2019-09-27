@@ -16,6 +16,9 @@ resource "aws_instance" "web_public_1" {
   provisioner "file" {
     source      = "/root/.ssh/id_rsa"
     destination = "~/default_my_key_pair.pem"
+  }
+
+  provisioner "file" {
     source      = "golden_image.sh"
     destination = "/tmp/golden_image.sh"
   }

@@ -1,5 +1,6 @@
 #!/bin/bash
-#parameter 1 = memcached server, parameter 2 = rails environment
+#parameter 1 = memcached server
+#parameter 2 = rails environment
 chmod 400 default_my_key_pair.pem
 sudo yum install docker -y
 sudo yum install git -y
@@ -8,28 +9,35 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 sudo service docker start
 sudo systemctl enable docker
+
+cd /home/ec2-user
 sudo git clone https://github.com/mhamouda1/ruby-docker-app
-cd ~/ruby-docker-app
+cd /home/ec2-user/ruby-docker-app
 
 echo MEMCACHED_SERVER VARIABLE IS: $1
 echo RAILS_ENV VARIABLE IS: $2
 
+export MEMCACHED_SERVER=$1
+export RAILS_ENV=$2
+
 sudo bash -c "echo '#!/bin/bash' >> /etc/profile.d/export_env_variables.sh"
-sudo bash -c "echo export RAILS_ENV=$2 >> /etc/profile.d/export_env_variables.sh"
-sudo bash -c "echo export MEMCACHED_SERVER=$1 >> /etc/profile.d/export_env_variables.sh"
+sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /etc/profile.d/export_env_variables.sh"
+sudo bash -c "echo 'export RAILS_ENV=$2' >> /etc/profile.d/export_env_variables.sh"
 
-sudo bash -c "echo export RAILS_ENV=$2 >> /root/.bash_profile"
-sudo bash -c "echo export MEMCACHED_SERVER=$1 >> /root/.bash_profile"
+sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /root/.bash_profile"
+sudo bash -c "echo 'export RAILS_ENV=$2' >> /root/.bash_profile"
 
-sudo bash -c "echo export RAILS_ENV=$2 >> /root/.bashrc"
-sudo bash -c "echo export MEMCACHED_SERVER=$1 >> /root/.bashrc"
+sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /root/.bashrc"
+sudo bash -c "echo 'export RAILS_ENV=$2' >> /root/.bashrc"
 
-sudo bash -c 'source /root/.bash_profile'
-sudo bash -c 'source /root/.bashrc'
+sudo bash -c "echo 'export MEMCACHED_SERVER=$1'"
+sudo bash -c "echo 'export RAILS_ENV=$2'"
+
+sudo bash -c "source /root/.bash_profile"
+sudo bash -c "source /root/.bashrc"
 sudo bash /etc/profile.d/export_env_variables.sh
 
-sudo cat /root/.bash_profile'
-cat /root/.bash_profile'
+cd /home/ec2-user/ruby-docker-app
 
 sudo $(aws ecr get-login --no-include-email --region us-east-1)
 sudo docker-compose pull

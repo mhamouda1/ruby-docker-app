@@ -3,6 +3,9 @@ sudo bash -c 'echo export HOSTNAME=$(curl http://169.254.169.254/latest/meta-dat
 source /root/.bash_profile
 source /root/.bashrc
 
+export RAILS_ENV=$(RAILS_ENV)
+export MEMCACHED_SERVER=$(MEMCACHED_SERVER)
+
 whoami > whoami.txt
 env > env.txt
 
