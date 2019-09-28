@@ -30,6 +30,7 @@ sleep 7
 sudo docker-compose run web bundle update
 sudo docker-compose run web rake db:create
 sudo docker-compose run web rake db:migrate
+sudo docker-compose run web rake assets:precompile
 sudo docker-compose down
 sudo docker-compose up -d
 
