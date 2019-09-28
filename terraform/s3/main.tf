@@ -3,8 +3,8 @@ resource "random_id" "server" {
 }
 
 resource "aws_s3_bucket" "main" {
-  bucket = "my-s3-bucket-${random_id.server.b64}"
-  acl    = "private"
+  bucket = "mys3-bucket-${random_id.server.hex}"
+  acl    = "public-read"
 
   versioning {
     enabled = true
