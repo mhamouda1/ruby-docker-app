@@ -13,3 +13,7 @@ output "ssh_web_public_1" {
 #output "ssh_web_public_2" {
 #  value = "ssh ec2-user@${aws_instance.web_public_2.public_ip}"
 #}
+
+output "elasticache_address" {
+  value = "${module.elasticache.cluster_address}"
+}

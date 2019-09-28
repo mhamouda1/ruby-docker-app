@@ -1,6 +1,6 @@
 resource "aws_elasticache_subnet_group" "main" {
   name       = "tf-cache-subnet"
-  subnet_ids = ["${aws_subnet.public_1[0].id}", "${aws_subnet.public_1[1].id}"]
+  subnet_ids = "${var.subnet_ids}"
 }
 
 resource "aws_elasticache_cluster" "main" {
