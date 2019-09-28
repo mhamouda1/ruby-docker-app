@@ -27,6 +27,7 @@ services:
       context: .
       dockerfile: ./docker/web/Dockerfile
     image: 163963319917.dkr.ecr.us-east-1.amazonaws.com/ruby-docker-app:latest
+    command: bash -c "bundle update && rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
     working_dir: /app
     container_name: web
     restart: always
@@ -38,10 +39,3 @@ services:
     - .:/app
     ports:
     - 3000:3000
-    # environment:
-    # - NODE_HOST=${HOSTNAME}
-    # - MEMCACHED_SERVER=${MEMCACHED_SERVER}
-    # - RAILS_ENV=${RAILS_ENV}
-    # - RUBY_DOCKER_APP_DATABASE_HOST=${RUBY_DOCKER_APP_DATABASE_HOST}
-    # - RUBY_DOCKER_APP_DATABASE_PASSWORD=${RUBY_DOCKER_APP_DATABASE_PASSWORD}
-    # - RUBY_DOCKER_APP_DATABASE_USERNAME=${RUBY_DOCKER_APP_DATABASE_USERNAME}
