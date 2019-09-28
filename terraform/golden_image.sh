@@ -1,6 +1,4 @@
 #!/bin/bash
-#parameter 1 = memcached server
-#parameter 2 = rails environment
 chmod 400 default_my_key_pair.pem
 sudo yum install docker -y
 sudo yum install git -y
@@ -14,18 +12,6 @@ cd /home/ec2-user
 sudo git clone https://github.com/mhamouda1/ruby-docker-app
 cd /home/ec2-user/ruby-docker-app
 
-#echo MEMCACHED_SERVER=$1
-#echo RAILS_ENV=$2
-#echo RUBY_DOCKER_APP_DATABASE_HOST=$3
-#echo RUBY_DOCKER_APP_DATABASE_PASSWORD=$4
-#echo RUBY_DOCKER_APP_DATABASE_USERNAME=$5
-#
-#export MEMCACHED_SERVER=$1
-#export RAILS_ENV=$2
-#export RUBY_DOCKER_APP_DATABASE_HOST=$3
-#export RUBY_DOCKER_APP_DATABASE_PASSWORD=$4
-#export RUBY_DOCKER_APP_DATABASE_USERNAME=$5
-
 sudo touch .env
 sudo bash -c "echo 'MEMCACHED_SERVER=$1' >> .env"
 sudo bash -c "echo 'RAILS_ENV=$2' >> .env"
@@ -33,15 +19,6 @@ sudo bash -c "echo 'RUBY_DOCKER_APP_DATABASE_HOST=$3' >> .env"
 sudo bash -c "echo 'RUBY_DOCKER_APP_DATABASE_PASSWORD=$4' >> .env"
 sudo bash -c "echo 'RUBY_DOCKER_APP_DATABASE_USERNAME=$5' >> .env"
 sudo bash -c "echo 'RAILS_SERVE_STATIC_FILES=true' >> .env"
-
-#sudo bash -c "echo 'export MEMCACHED_SERVER=$1' >> /root/.bash_profile"
-#sudo bash -c "echo 'export RAILS_ENV=$2' >> /root/.bash_profile"
-#sudo bash -c "echo 'export RUBY_DOCKER_APP_DATABASE_HOST=$3' >> /root/.bash_profile"
-#sudo bash -c "echo 'export RUBY_DOCKER_APP_DATABASE_PASSWORD=$4' >> /root/.bash_profile"
-#sudo bash -c "echo 'export RUBY_DOCKER_APP_DATABASE_USERNAME=$5' >> /root/.bash_profile"
-#sudo bash -c "source /root/.bash_profile"
-
-cd /home/ec2-user/ruby-docker-app
 
 sudo $(aws ecr get-login --no-include-email --region us-east-1)
 sudo docker-compose pull
