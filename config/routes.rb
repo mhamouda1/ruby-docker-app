@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   get "/x" => "statics#home"
 
   get "register", to: "users#new", as: "register"
+  post "register", to: "users#create"
   get "login", to: "sessions#new", as: "login"
+  post "login", to: "sessions#create"
   get "logout", to: "sessions#destroy", as: "logout"
 
-  resources :users
+  # resources :users
   resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.

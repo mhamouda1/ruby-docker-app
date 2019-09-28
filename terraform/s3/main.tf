@@ -15,20 +15,22 @@ resource "aws_s3_bucket" "main" {
   }
 }
 
-#resource "null_resource" "null_id" {
-#  provisioner "local-exec" {
-#  command = <<EOT
-#    aws s3 cp s3/logo.png s3://${aws_s3_bucket.main.bucket}
-#EOT
-#  }
-#}
-
-resource "aws_s3_bucket_object" "object" {
+resource "aws_s3_bucket_object" "object1" {
   bucket = "${aws_s3_bucket.main.bucket}"
-  key    = "${var.logo}"
-  source = "./s3/${var.logo}"
+  key    = "assets/${var.logo}"
+  source = "~/code/ruby-docker-app/app/assets/images/${var.logo}"
   acl    = "public-read"
   content_type = "image/png"
 
-  etag = "${filemd5("./s3/logo.png")}"
+  etag = "${filemd5("~/code/ruby-docker-app/app/assets/images/logo.png")}"
+}
+
+resource "aws_s3_bucket_object" "object2" {
+  bucket = "${aws_s3_bucket.main.bucket}"
+  key    = "images/${var.logo}"
+  source = "~/code/ruby-docker-app/app/assets/images/${var.logo}"
+  acl    = "public-read"
+  content_type = "image/png"
+
+  etag = "${filemd5("~/code/ruby-docker-app/app/assets/images/logo.png")}"
 }

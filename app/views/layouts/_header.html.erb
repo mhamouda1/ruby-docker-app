@@ -1,4 +1,8 @@
-<img src="//<%= ENV["CLOUDFRONT_DOMAIN_NAME"] %>/logo.png" class="logo">
+<% if false %>
+  <img src="//<%= ENV["CLOUDFRONT_DOMAIN_NAME"] %>/logo.png" class="logo">
+  <img src="//<%= ENV["CLOUDFRONT_DOMAIN_NAME"] %>/logo.png" class="logo">
+<% end %>
+  <%= image_tag "logo.png", class: "logo" %>
 <br>
 <% if current_user %>
   Logged in as <%= current_user.email %>.
