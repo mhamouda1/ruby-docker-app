@@ -15,6 +15,7 @@ export RAILS_ENV=$2
 export RUBY_DOCKER_APP_DATABASE_HOST=$3
 export RUBY_DOCKER_APP_DATABASE_PASSWORD=$4
 export RUBY_DOCKER_APP_DATABASE_USERNAME=$5
+export NODE_HOST=$(curl http://169.254.169.254/latest/meta-data/local-hostname)
 
 cd /home/ec2-user/ruby-docker-app
 sudo docker-compose down
