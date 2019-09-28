@@ -26,7 +26,7 @@ resource "aws_instance" "web_public_1" {
   provisioner "remote-exec" {
     inline = [
       "sudo chmod +x /tmp/golden_image.sh",
-      "sudo bash /tmp/golden_image.sh ${var.MEMCACHED_SERVER} production ${aws_db_instance.default.address} ${var.RUBY_DOCKER_APP_DATABASE_PASSWORD} ${var.RUBY_DOCKER_APP_DATABASE_USERNAME}",
+      "sudo bash /tmp/golden_image.sh MEMCACHED_SERVER=${var.MEMCACHED_SERVER} RAILS_ENV=production RUBY_DOCKER_APP_DATABASE_HOST=${aws_db_instance.default.address} RUBY_DOCKER_APP_DATABASE_PASSWORD=${var.RUBY_DOCKER_APP_DATABASE_PASSWORD} RUBY_DOCKER_APP_DATABASE_USERNAME=${var.RUBY_DOCKER_APP_DATABASE_USERNAME}",
     ]
 
     # script = "golden_image.sh"
