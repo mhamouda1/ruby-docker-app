@@ -8,9 +8,6 @@ sudo git pull
 sudo git stash #gemfile.lock error if don't git stash
 sudo git pull
 
-#sudo docker-compose build
-#sudo docker-compose run -d web
-#sudo docker-compose run web bundle update
 sudo docker-compose run -p 5000:3000 web rake db:create
 sudo docker-compose run -p 5000:3000 web rake db:migrate
 sudo docker-compose run -p 5000:3000 web rake assets:precompile
