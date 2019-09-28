@@ -17,3 +17,7 @@ output "ssh_web_public_1" {
 output "elasticache_address" {
   value = "${module.elasticache.cluster_address}"
 }
+
+output "cloudfront_domain_name" {
+  value = "${module.cloudfront.domain_name}"
+}
