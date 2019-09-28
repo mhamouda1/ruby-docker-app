@@ -30,13 +30,19 @@ services:
     working_dir: /app
     container_name: web
     restart: always
-    # depends_on:
-    # - db
-    # - redis
+    env_file:
+    - .env
+    depends_on:
+    - db
+    - redis
     volumes:
     - .:/app
     ports:
     - 3000:3000
-    environment:
-    - MY_HOST=${HOSTNAME}
-    - MEMCACHED_SERVER=${MEMCACHED_SERVER} #pass from host to container
+    # environment:
+    # - NODE_HOST=${HOSTNAME}
+    # - MEMCACHED_SERVER=${MEMCACHED_SERVER}
+    # - RAILS_ENV=${RAILS_ENV}
+    # - RUBY_DOCKER_APP_DATABASE_HOST=${RUBY_DOCKER_APP_DATABASE_HOST}
+    # - RUBY_DOCKER_APP_DATABASE_PASSWORD=${RUBY_DOCKER_APP_DATABASE_PASSWORD}
+    # - RUBY_DOCKER_APP_DATABASE_USERNAME=${RUBY_DOCKER_APP_DATABASE_USERNAME}
