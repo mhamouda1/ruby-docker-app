@@ -31,8 +31,6 @@ services:
     container_name: web
     restart: always
     env_file: .env
-    # env_file:
-    # - .env
     depends_on:
     - db
     - redis
