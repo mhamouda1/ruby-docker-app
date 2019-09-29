@@ -12,4 +12,6 @@ RUN bundle install --jobs 5
 
 COPY . /app
 
+RUN apt-get install vim -y
+
 CMD rm -f tmp/pids/server.pid && rails s -b 0.0.0.0
