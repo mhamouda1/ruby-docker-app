@@ -4,3 +4,4 @@ variable "RUBY_DOCKER_APP_DATABASE_USERNAME" {}
 variable "GIT_VERSION" {
   default = "1"
 }
+variable "AWS_DEFAULT_REGION" {}
