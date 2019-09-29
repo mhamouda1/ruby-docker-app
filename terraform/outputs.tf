@@ -21,3 +21,7 @@ output "elasticache_address" {
 output "cloudfront_domain_name" {
   value = "${module.cloudfront.domain_name}"
 }
+
+output "ecr_repository_url" {
+  value = "${module.ecr.repository_url}"
+}
