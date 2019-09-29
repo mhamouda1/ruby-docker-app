@@ -2,21 +2,24 @@
   height: 100px;
 }
 html {
+}
+body {
   border: 1px solid black;
   box-shadow: #d4d4d4 2px 2px 6px 0px;
   border-radius: 3px;
   margin: 10px;
   padding: 15px;
   margin: auto;
-  margin: auto;
   width: 50%;
   margin-top: 20px;
   font-family: roboto !important;
-}
-body {
   min-height: 500px;
   font-family: roboto !important;
+  background-color: white;
 }
 p, ol, ul, td {
   font-family: roboto !important;
+}
+html {
+  height: 100%;
 }
