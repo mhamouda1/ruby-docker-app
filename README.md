@@ -16,3 +16,4 @@ docker-compose run web rake db:migrate
 test
 test
 test
+test
