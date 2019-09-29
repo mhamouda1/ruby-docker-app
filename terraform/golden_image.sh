@@ -12,14 +12,10 @@ cd /home/ec2-user
 sudo git clone https://github.com/mhamouda1/ruby-docker-app
 cd /home/ec2-user/ruby-docker-app
 
+#echo env argument variables to .env file
 sudo touch .env
-sudo bash -c "echo '$1' >> .env"
-sudo bash -c "echo '$2' >> .env"
-sudo bash -c "echo '$3' >> .env"
-sudo bash -c "echo '$4' >> .env"
-sudo bash -c "echo '$5' >> .env"
-sudo bash -c "echo '$6' >> .env"
-sudo bash -c "echo '$7' >> .env"
+array="${@}"
+echo $array | tr " " "\n" >> .env
 sudo bash -c "echo 'RAILS_SERVE_STATIC_FILES=true' >> .env"
 
 sudo $(aws ecr get-login --no-include-email --region us-east-1)
