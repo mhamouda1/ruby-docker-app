@@ -7,7 +7,7 @@
 #docker-compose .env file
 .env
 
-*.png
+# *.png
 
 # Ignore bundler config.
 /.bundle
