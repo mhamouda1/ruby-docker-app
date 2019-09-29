@@ -11,10 +11,12 @@ html {
   margin: auto;
   width: 50%;
   margin-top: 20px;
+  font-family: roboto !important;
 }
 body {
   min-height: 500px;
-  // margin: auto;
-  // width: 50%;
-  // text-align: center;
+  font-family: roboto !important;
+}
+p, ol, ul, td {
+  font-family: roboto !important;
 }
