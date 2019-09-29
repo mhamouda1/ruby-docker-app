@@ -8,8 +8,7 @@ export $(cat .env | xargs)
 sudo docker-compose down
 
 #TODO: add git commit hash and checkout that version
-sudo git pull
-sudo git stash #gemfile.lock error if don't git stash
+sudo rm Gemfile.lock #don't worry, it will be pulled on next line
 sudo git pull
 
 #run migrations, compile assets, and run server
