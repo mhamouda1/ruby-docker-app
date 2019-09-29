@@ -8,6 +8,7 @@ resource "aws_launch_configuration" "main" {
     "${aws_security_group.development_testing.id}"
   ]
   user_data = "${file("userdata.sh")}"
+  iam_instance_profile = "${aws_iam_instance_profile.test_profile.name}"
 
   lifecycle {
     create_before_destroy = true

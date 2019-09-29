@@ -19,6 +19,7 @@ sudo bash -c "echo '$3' >> .env"
 sudo bash -c "echo '$4' >> .env"
 sudo bash -c "echo '$5' >> .env"
 sudo bash -c "echo '$6' >> .env"
+sudo bash -c "echo '$7' >> .env"
 sudo bash -c "echo 'RAILS_SERVE_STATIC_FILES=true' >> .env"
 
 sudo $(aws ecr get-login --no-include-email --region us-east-1)
