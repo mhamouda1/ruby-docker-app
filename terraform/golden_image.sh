@@ -20,6 +20,5 @@ sudo bash -c "echo 'RAILS_SERVE_STATIC_FILES=true' >> .env"
 
 sudo $(aws ecr get-login --no-include-email --region us-east-1)
 sudo docker-compose pull
-sudo docker-compose run web rake db:create
-sudo docker-compose run web rake db:migrate
+sudo docker-compose run -p 5000:3000 web bash -c "bundle install && rake db:create && rake db:migrate && rake assets:precompile"
 sudo docker-compose down
