@@ -7,6 +7,7 @@ export $(cat .env | xargs)
 
 sudo docker-compose down
 
+#TODO: add git commit hash and checkout that version
 sudo git pull
 sudo git stash #gemfile.lock error if don't git stash
 sudo git pull
