@@ -1,5 +1,5 @@
 resource "aws_launch_configuration" "main" {
-  name_prefix   = "terraform-lc-example-"
+  name_prefix   = "launch_config_v${var.GIT_VERSION}_"
   image_id      = "${data.aws_ami.my_custom_image.id}"
   instance_type = "t2.micro"
   security_groups = [
