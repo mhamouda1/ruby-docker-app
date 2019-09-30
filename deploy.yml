@@ -21,8 +21,17 @@ spec:
         - containerPort: 3000
         env:
         - name: RUBY_DOCKER_APP_DATABASE_HOST
-          value: $(RUBY_DOCKER_APP_DATABASE_HOST)
-        - name: RUBY_DOCKER_APP_DATABASE_PASSWORD
-          value: $(RUBY_DOCKER_APP_DATABASE_PASSWORD)
+          valueFrom:
+            configMapKeyRef:
+              name: production-env-file
+              key: RUBY_DOCKER_APP_DATABASE_HOST
         - name: RUBY_DOCKER_APP_DATABASE_USERNAME
-          value: $(RUBY_DOCKER_APP_DATABASE_USERNAME)
+          valueFrom:
+            configMapKeyRef:
+              name: production-env-file
+              key: RUBY_DOCKER_APP_DATABASE_USERNAME
+        - name: RUBY_DOCKER_APP_DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: production-env-file
+              key: RUBY_DOCKER_APP_DATABASE_PASSWORD
