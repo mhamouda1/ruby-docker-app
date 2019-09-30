@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ingress-controller
@@ -20,7 +20,7 @@ spec:
           args:
             - /nginx-ingress-controller
             - --configmap=$(POD_NAMESPACE)/nginx-configuration
-            - --default-backend-service=app-space/default-http-backend
+            - --default-backend-service=default/my-service
           env:
             - name: POD_NAME
               valueFrom:
@@ -33,5 +33,5 @@ spec:
           ports:
             - name: http
               containerPort: 80
-            - name: https
-              containerPort: 443
+            # - name: https
+              # containerPort: 443
