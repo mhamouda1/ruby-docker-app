@@ -19,3 +19,10 @@ spec:
         image: 219445987607.dkr.ecr.us-east-1.amazonaws.com/ruby-docker-app:latest
         ports:
         - containerPort: 3000
+        env:
+        - name: RUBY_DOCKER_APP_DATABASE_HOST
+          value: $(RUBY_DOCKER_APP_DATABASE_HOST)
+        - name: RUBY_DOCKER_APP_DATABASE_PASSWORD
+          value: ""
+        - name: RUBY_DOCKER_APP_DATABASE_USERNAME
+          value: ""
