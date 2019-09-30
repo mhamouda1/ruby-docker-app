@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: ruby-docker-app
-        image: 219445987607.dkr.ecr.us-east-1.amazonaws.com/ruby-docker-app:latest
+        image: 072798282081.dkr.ecr.us-east-1.amazonaws.com/ruby-docker-app:latest
         ports:
         - containerPort: 3000
         env:
