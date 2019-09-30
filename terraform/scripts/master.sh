@@ -52,6 +52,8 @@ sudo bash -c "echo \"alias kgn='kubectl get nodes'\"" >> ~/.bashrc && source ~/.
 sudo bash -c "echo \"alias kgp='kubectl get pods'\"" >> ~/.bashrc && source ~/.bashrc
 sudo bash -c "echo \"alias kgd='kubectl get deployments'\"" >> ~/.bashrc && source ~/.bashrc
 sudo bash -c "echo \"alias kgs='kubectl get services'\"" >> ~/.bashrc && source ~/.bashrc
+sudo bash -c "echo \"alias kgi='kubectl get ingresses'\"" >> ~/.bashrc && source ~/.bashrc
+sudo bash -c "echo \"alias kgcm='kubectl get configmaps'\"" >> ~/.bashrc && source ~/.bashrc
 
 #install vim and tmux dotfiles
 yum install git -y && \
