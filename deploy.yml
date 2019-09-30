@@ -35,3 +35,13 @@ spec:
             configMapKeyRef:
               name: production-env-file
               key: RUBY_DOCKER_APP_DATABASE_PASSWORD
+        - name: RAILS_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: production-env-file
+              key: RAILS_ENV
+        - name: MEMCACHED_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: production-env-file
+              key: MEMCACHED_SERVER
