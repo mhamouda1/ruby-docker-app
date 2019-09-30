@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ruby-docker-app-deployment
+  labels:
+    app: ruby-docker-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ruby-docker-app
+  template:
+    metadata:
+      labels:
+        app: ruby-docker-app
+    spec:
+      containers:
+      - name: ruby-docker-app
+        image: ruby-docker-app:1.7.9
+        ports:
+        - containerPort: 80
