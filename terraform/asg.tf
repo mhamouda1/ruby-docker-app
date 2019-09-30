@@ -1,5 +1,5 @@
 resource "aws_launch_configuration" "main" {
-  name_prefix   = "launch_config_v${var.GIT_VERSION}_"
+  name_prefix   = "launch_config_"
   image_id      = "${data.aws_ami.my_custom_image.id}"
   instance_type = "t2.micro"
   security_groups = [
@@ -23,7 +23,7 @@ resource "aws_autoscaling_group" "main" {
   default_cooldown          = 5 #for dev testing
   health_check_grace_period = 60 #time it takes until begin doing health checks
   health_check_type         = "ELB"
-  target_group_arns         = ["${aws_lb_target_group.target_group_1.arn}", "${aws_lb_target_group.target_group_2.arn}"]
+  target_group_arns         = ["${aws_lb_target_group.target_group_1.arn}"]
   force_delete              = true
   launch_configuration      = "${aws_launch_configuration.main.name}"
   vpc_zone_identifier       = ["${aws_subnet.public_1[0].id}", "${aws_subnet.public_2[0].id}"]
