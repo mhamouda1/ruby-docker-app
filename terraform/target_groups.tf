@@ -6,7 +6,7 @@ resource "random_integer" "web_target_group_id" {
 resource "aws_lb_target_group" "target_group_1" {
   # name                 = "my-tg-group-${random_integer.web_target_group_id.result}"
   name                 = "my-tg-group-32"
-  port     = 31269
+  port     = 31930
   protocol = "HTTP"
   vpc_id   = "${aws_vpc.main.id}"
   deregistration_delay = 0
@@ -26,7 +26,7 @@ resource "aws_lb_target_group" "target_group_1" {
 resource "aws_lb_target_group_attachment" "instance_1" {
   target_group_arn = "${aws_lb_target_group.target_group_1.arn}"
   target_id        = "${aws_instance.master.id}"
-  port             = 31269
+  port             = 31930
 }
 
 
