@@ -97,3 +97,19 @@ sudo swapon -s && \
 sudo swapon /swapfile && \
 free -h
 
+#git clone the project
+cd ~
+git clone https://github.com/mhamouda1/ruby-docker-app
+
+#install helm/tiller/ingress-nginx
+chmod 700 ruby-docker-app/get_helm.sh
+./ruby-docker-app/get_helm.sh
+cd ~/ruby-docker-app
+kubectl create -f rbac-config.yml #tiller
+helm init --service-account tiller --history-max 200 #tiller
+helm init --service-account tiller --wait --override spec.selector.matchLabels.'name'='tiller',spec.selector.matchLabels.'app'='helm' --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | kubectl apply -f -
+
+#install docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
