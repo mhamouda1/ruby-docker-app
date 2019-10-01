@@ -12,7 +12,7 @@ resource "aws_lb" "my_alb" {
 
 resource "aws_lb_listener" "my_alb_80" {
   load_balancer_arn = "${aws_lb.my_alb.arn}"
-  port              = 30939
+  port              = 80
   default_action {
     type             = "forward"
     target_group_arn = "${aws_lb_target_group.target_group_1.arn}"

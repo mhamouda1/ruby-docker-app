@@ -45,3 +45,13 @@ spec:
             configMapKeyRef:
               name: production-env-file
               key: MEMCACHED_SERVER
+        - name: CLOUDFRONT_DOMAIN_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: production-env-file
+              key: CLOUDFRONT_DOMAIN_NAME
+        - name: S3_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: production-env-file
+              key: S3_BUCKET
