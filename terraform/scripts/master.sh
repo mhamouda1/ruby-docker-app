@@ -57,20 +57,6 @@ sudo bash -c "echo \"alias kgs='kubectl get services'\"" >> ~/.bashrc && source 
 sudo bash -c "echo \"alias kgi='kubectl get ingresses'\"" >> ~/.bashrc && source ~/.bashrc
 sudo bash -c "echo \"alias kgcm='kubectl get configmaps'\"" >> ~/.bashrc && source ~/.bashrc
 
-#install vim and tmux dotfiles
-yum install git -y && \
-yum install tmux -y && \
-yum install vim -y && \
-git clone https://github.com/crowdtap/dotfiles ~/.dotfiles && \
-cd ~/.dotfiles && \
-echo '"Escape key' >> ~/.dotfiles/vimrc && \
-echo ':imap jj <Esc>' >> ~/.dotfiles/vimrc && \
-echo ':imap jk <Esc>'  >> ~/.dotfiles/vimrc && \
-echo ':imap kj <Esc>'  >> ~/.dotfiles/vimrc && \
-echo ':nmap Z :wa<CR>'  >> ~/.dotfiles/vimrc && \
-echo "Bundle 'ervandew/screen'" >> ~/.custom.vim-plugins && \
-./setup.sh && \
-yum install the_silver_searcher -y
 
 #configure git
 git config --global user.email "you@example.com"
@@ -87,15 +73,6 @@ sudo kubeadm token create --print-join-command --ttl=72h > kubernetes_join.txt
 sudo aws s3 cp kubernetes_join.txt s3://$S3_BUCKET
 hostnamectl set-hostname master
 
-#add swap memory
-sudo dd if=/dev/zero of=/swapfile bs=1024 count=1048576 && \
-sudo chmod 600 /swapfile && \
-sudo mkswap /swapfile && \
-echo '/swapfile            swap swap    0   0' >> /etc/fstab && \
-sudo mount -a && \
-sudo swapon -s && \
-sudo swapon /swapfile && \
-free -h
 
 #git clone the project
 cd ~
@@ -113,3 +90,35 @@ helm init --service-account tiller --wait --override spec.selector.matchLabels.'
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+#------------- background tasks -------------
+
+# tmux new-session -d -s "background-tasks" /root/background-tasks.sh
+
+# #install vim and tmux dotfiles in background
+yum install git -y && \
+yum install tmux -y && \
+yum install vim -y && \
+git clone https://github.com/crowdtap/dotfiles ~/.dotfiles && \
+cd ~/.dotfiles && \
+echo '"Escape key' >> ~/.dotfiles/vimrc && \
+echo ':imap jj <Esc>' >> ~/.dotfiles/vimrc && \
+echo ':imap jk <Esc>'  >> ~/.dotfiles/vimrc && \
+echo ':imap kj <Esc>'  >> ~/.dotfiles/vimrc && \
+echo ':nmap Z :wa<CR>'  >> ~/.dotfiles/vimrc && \
+echo "Bundle 'ervandew/screen'" >> ~/.custom.vim-plugins && \
+./setup.sh && \
+yum install the_silver_searcher -y
+
+# #add swap memory
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=1048576 && \
+sudo chmod 600 /swapfile && \
+sudo mkswap /swapfile && \
+echo '/swapfile            swap swap    0   0' >> /etc/fstab && \
+sudo mount -a && \
+sudo swapon -s && \
+sudo swapon /swapfile && \
+free -h
+
+#install helm
+sudo helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
