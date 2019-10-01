@@ -120,5 +120,5 @@ sudo swapon -s && \
 sudo swapon /swapfile && \
 free -h
 
-#install helm
-sudo helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
+#install nginx-ingress-controller
+# sudo helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
