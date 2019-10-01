@@ -60,3 +60,7 @@ spec:
             configMapKeyRef:
               name: production-env-file
               key: RAILS_SERVE_STATIC_FILES
+        - name: NODE_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
