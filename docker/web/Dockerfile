@@ -10,7 +10,7 @@ RUN apt-get install vim -y
 COPY Gemfile /app/
 COPY Gemfile.lock /app/
 
-RUN bundle install --jobs 5
+RUN bundle install --jobs 50
 
 COPY . /app
 
