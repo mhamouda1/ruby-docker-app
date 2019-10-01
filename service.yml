@@ -7,7 +7,6 @@ spec:
   - port: 3000
     protocol: TCP
     targetPort: 3000
-    nodePort: 31079
-  type: NodePort
+  type: ClusterIP
   selector:
     app: ruby-docker-app
