@@ -19,9 +19,6 @@ resource "aws_db_instance" "default" {
   skip_final_snapshot  = "true"
 }
 
-output "rds_endpoint" {
-  value = "${aws_db_instance.default.endpoint}"
-}
 
 #resource "aws_db_parameter_group" "main" {
 #  name = "main"
