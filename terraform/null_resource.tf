@@ -12,7 +12,8 @@ resource "null_resource" "test2" {
       echo 'S3_BUCKET=${module.s3.bucket_name}' >> $kubernetes_env_file
       echo 'RAILS_SERVE_STATIC_FILES=true' >> $kubernetes_env_file
 
-      # aws secretsmanager get-secret-value --secret-id RUBY_DOCKER_APP_DATABASE_PASSWORD  --query 'SecretString' --output text | jq -r '.RUBY_DOCKER_APP_DATABASE_PASSWORD'
     EOT
   }
 }
+
+# aws secretsmanager get-secret-value --secret-id RUBY_DOCKER_APP_DATABASE_PASSWORD  --query 'SecretString' --output text | jq -r '.RUBY_DOCKER_APP_DATABASE_PASSWORD'
