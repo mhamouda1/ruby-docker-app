@@ -14,5 +14,5 @@ spec:
           servicePort: 3000
       - path: /bar
         backend:
-          serviceName: nginx-service
+          serviceName: nginx
           servicePort: 80
