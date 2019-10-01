@@ -31,7 +31,7 @@ services:
     working_dir: /app
     container_name: web
     restart: always
-    env_file: .env
+    env_file: .env.docker.development
     depends_on:
     - db
     - redis
