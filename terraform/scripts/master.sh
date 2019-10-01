@@ -110,7 +110,7 @@ echo "Bundle 'ervandew/screen'" >> ~/.custom.vim-plugins && \
 ./setup.sh && \
 yum install the_silver_searcher -y
 
-# #add swap memory
+#add swap memory
 sudo dd if=/dev/zero of=/swapfile bs=1024 count=1048576 && \
 sudo chmod 600 /swapfile && \
 sudo mkswap /swapfile && \
