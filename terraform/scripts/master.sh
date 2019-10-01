@@ -96,3 +96,4 @@ sudo mount -a && \
 sudo swapon -s && \
 sudo swapon /swapfile && \
 free -h
+
