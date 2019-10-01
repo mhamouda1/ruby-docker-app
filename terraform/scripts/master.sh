@@ -80,6 +80,10 @@ echo "Bundle 'ervandew/screen'" >> ~/.custom.vim-plugins && \
 ./setup.sh && \
 yum install the_silver_searcher -y
 
+#configure git
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
 
 sudo mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
