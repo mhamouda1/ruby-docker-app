@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx-ingress
+    chart: nginx-ingress-1.23.0
+    component: controller
+    heritage: Tiller
+    release: my-nginx
+  name: my-nginx-nginx-ingress-controller
+spec:
+  clusterIP: 10.106.20.153
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: http
+    nodePort: 31111
+    port: 80
+    protocol: TCP
+    targetPort: http
+  - name: https
+    nodePort: 31112
+    port: 443
+    protocol: TCP
+    targetPort: https
+  selector:
+    app: nginx-ingress
+    component: controller
+    release: my-nginx
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
