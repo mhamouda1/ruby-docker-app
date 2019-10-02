@@ -4,6 +4,8 @@ resource "aws_vpc" "main" {
   tags = {
     Name = "${terraform.workspace}"
   }
+
+  depends_on              = [module.s3.app_bucket]
 }
 
 resource "aws_internet_gateway" "main" {
