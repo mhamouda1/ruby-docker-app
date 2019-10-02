@@ -50,7 +50,7 @@ resource "aws_instance" "master" {
 }
 
 resource "aws_instance" "worker" {
-  count         = 1
+  count         = 2
   ami           = "${data.aws_ami.amazon.id}"
   instance_type = "t2.micro"
   subnet_id     = "${aws_subnet.public_1[0].id}"
