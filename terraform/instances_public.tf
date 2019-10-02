@@ -50,7 +50,7 @@ resource "aws_instance" "master" {
 }
 
 resource "aws_instance" "worker" {
-  count         = 2
+  count         = "${var.num_workers}"
   ami           = "${data.aws_ami.amazon.id}"
   instance_type = "t2.micro"
   subnet_id     = "${aws_subnet.public_1[0].id}"
@@ -104,7 +104,6 @@ resource "aws_instance" "worker" {
 
   depends_on = [aws_instance.master]
 }
-
 
 
 

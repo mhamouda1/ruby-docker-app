@@ -23,12 +23,18 @@ resource "aws_lb_target_group" "target_group_1" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "instance_1" {
+resource "aws_lb_target_group_attachment" "master" {
   target_group_arn = "${aws_lb_target_group.target_group_1.arn}"
   target_id        = "${aws_instance.master.id}"
   port             = 31111
 }
 
+resource "aws_lb_target_group_attachment" "workers" {
+  count            = "${var.num_workers}"
+  target_group_arn = "${aws_lb_target_group.target_group_1.arn}"
+  target_id        = "${aws_instance.worker[count.index].id}"
+  port             = 31111
+}
 
 
 

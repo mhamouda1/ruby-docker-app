@@ -12,3 +12,5 @@ private_subnets_1 = [
   "10.0.4.0/24",
   "10.0.5.0/24",
 ]
+
+num_workers = 2

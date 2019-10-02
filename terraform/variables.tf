@@ -12,3 +12,5 @@ variable "private_subnets_1" {
 
 variable "secret_key" {}
 variable "access_key" {}
+
+variable "num_workers" {}
