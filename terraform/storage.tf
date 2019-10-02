@@ -17,6 +17,11 @@ resource "aws_db_instance" "default" {
   db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.id}"
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = "true"
+  vpc_security_group_ids = [
+    "${aws_security_group.allow_ssh_and_web.id}",
+    "${aws_vpc.main.default_security_group_id}",
+    "${aws_security_group.development_testing.id}"
+  ]
 }
 
 

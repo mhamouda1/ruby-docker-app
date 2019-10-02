@@ -53,3 +53,4 @@ production:
   username: <%= ENV['RUBY_DOCKER_APP_DATABASE_USERNAME'] %>
   password: <%= ENV['RUBY_DOCKER_APP_DATABASE_PASSWORD'] %>
   host: <%= ENV['RUBY_DOCKER_APP_DATABASE_HOST'] %>
+  port: 3306
